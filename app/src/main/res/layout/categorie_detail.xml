@@ -2,7 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/logo_bar_color">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,12 +19,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Caramel Mk2"
-                android:textSize="40sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/LogoName"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/hanal"
+                    android:textAlignment="center"
+                    android:padding="10dp"
+                    android:textColor="@color/Base_text_color"
+                    android:background="@drawable/main_textview_logo"
+                    tools:ignore="MissingConstraints"/>
+
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="20dp"
@@ -62,11 +70,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="25sp"
+                    android:textColor="@color/Base_text_color"
+                    android:fontFamily="@font/hanal"
                     android:text="선택한이름"/>
                 <TextView
+                    android:layout_marginTop="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
+                    android:fontFamily="@font/hanal"
+                    android:textColor="@color/Base_text_color"
                     android:text="상세내역"/>
             </LinearLayout>
         </LinearLayout>

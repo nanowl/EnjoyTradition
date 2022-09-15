@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/logo_bar_color">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -12,63 +13,67 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="15dp"
             android:orientation="vertical">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/LogoName"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                android:padding="10dp"
+                android:textColor="@color/Base_text_color"
+                android:background="@drawable/main_textview_logo"
+                tools:ignore="MissingConstraints"/>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:padding="10dp"
+                android:layout_marginTop="20dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
                 android:textSize="20sp"
-                android:textColor="@color/black"
-                android:text="Categorie"/>
+                android:textColor="@color/Category"
+                android:text="Category"/>
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="1000dp"
                 android:columnCount="2"
-                android:background="@color/Base_text_color"
-                android:padding="10dp">
+                android:rowCount="2"
+                android:padding="40dp"
+                android:orientation="vertical"
+                android:background="@drawable/main_gridlayout_line">
                 <ImageButton
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
                     android:src="@drawable/stage"
                     android:scaleType="fitXY"
-                    android:backgroundTint="@color/Icon_color"
-                    />
+                    android:background="@color/logo_bar_color"
+                    android:layout_margin="10dp"/>
                 <ImageButton
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
                     android:src="@drawable/movie"
                     android:scaleType="fitXY"
-                    android:backgroundTint="@color/Icon_color"
-                    android:layout_marginLeft="10dp" />
+                    android:background="@color/logo_bar_color"
+                    android:layout_margin="10dp"/>
                 <ImageButton
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
                     android:src="@drawable/concert"
                     android:scaleType="fitXY"
-                    android:backgroundTint="@color/Icon_color"/>
+                    android:background="@color/logo_bar_color"
+                    android:layout_margin="10dp"/>
                 <ImageButton
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
                     android:src="@drawable/busker"
                     android:scaleType="fitXY"
-                    android:backgroundTint="@color/Icon_color"
-                    android:layout_marginLeft="10dp" />
-
+                    android:background="@color/logo_bar_color"
+                    android:layout_margin="10dp"/>
             </GridLayout>
-
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="1000dp"-->
-<!--                android:background="@color/black" />-->
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="1000dp"-->
-<!--            android:background="@color/purple_700"/>-->
         </LinearLayout>
     </ScrollView>
 

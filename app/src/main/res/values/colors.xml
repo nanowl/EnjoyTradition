@@ -10,5 +10,6 @@
     <color name="logo_bar_color">#191A1A</color>
     <color name="Base_text_color">#E6E6E6</color>
     <color name="Category">#ACACB1</color>
+    <color name="Category_Back">#171717</color>
     <color name="Icon_color">#FCFCFC</color>
 </resources>

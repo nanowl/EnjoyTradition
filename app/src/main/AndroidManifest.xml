@@ -31,7 +31,7 @@
         </activity>
         <activity android:name=".Categorie_detail"
             android:exported="false"/>
-        <activity android:name=".Map_UserInterface"
+        <activity android:name=".detailed_category_1"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

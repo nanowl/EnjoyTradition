@@ -8,7 +8,8 @@ import android.widget.ListView;
 
 public class detailed_category_1 extends AppCompatActivity {
 
-    String [] fruitsList = {"로맨스","개그","감동"};
+    String [] fruitsList = {"오늘은 새우깡","남쪽으로 도망가","쏘아올린 북극곰",
+            "오늘은 새우깡","남쪽으로 도망가","쏘아올린 북극곰"};
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,6 @@ public class detailed_category_1 extends AppCompatActivity {
         listView.setAdapter(customBaseAdapter);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("OOO 카테고리");
+        actionBar.setTitle("소극장");
     }
 }

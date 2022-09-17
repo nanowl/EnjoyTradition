@@ -3,4 +3,13 @@
     <string name="LogoName">Culture Mk.2</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="my_page_element_account">My Account</string>
+    <string name="UserIdValue">UserID</string>
+    <string name="SystemIdValue">SystemID</string>
+
+    <string name="UserPhoneValue">UserPhone</string>
+    <string name="SystemPhoneValue">SystemPhone</string>
+
+    <string name="UserNameValue">UserName</string>
+    <string name="SystemNameValue">SystemName</string>
 </resources>

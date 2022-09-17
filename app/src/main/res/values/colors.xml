@@ -11,5 +11,8 @@
     <color name="Base_text_color">#E6E6E6</color>
     <color name="Category">#ACACB1</color>
     <color name="Category_Back">#171717</color>
+    <color name="my_page_element_color">#4D4D71</color>
+    <color name="my_page_list_element_color">#C1C1C1</color>
+    <color name="my_page_list_element_color_border">#4C4C6E</color>
     <color name="Icon_color">#FCFCFC</color>
 </resources>

@@ -1,5 +1,7 @@
 package com.example.y_practice2;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
 //        getHashKey(); 키해시를 호출
     }
 
+
+}
     //해당 앱의 키 해시를 구하는 로직
 //    private void getHashKey(){
 //        PackageInfo packageInfo = null;
@@ -34,5 +38,3 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        }
 //    }
-
-}

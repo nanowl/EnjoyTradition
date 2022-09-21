@@ -20,7 +20,7 @@ public class detailed_category_1 extends AppCompatActivity {
         CustomBaseAdapter customBaseAdapter = new CustomBaseAdapter(getApplication(),fruitsList);
         listView.setAdapter(customBaseAdapter);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("소극장");
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setTitle("소극장");
     }
 }

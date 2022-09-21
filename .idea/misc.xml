@@ -23,7 +23,13 @@
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.124" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.124" />
         <entry key="app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.124" />
+        <entry key="app/src/main/res/layout/activity_detailed_category1.xml" value="0.1828774062816616" />
+        <entry key="app/src/main/res/layout/activity_list_item.xml" value="0.1828774062816616" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20163116455078128" />
+        <entry key="app/src/main/res/layout/categorie_detail.xml" value="0.1828774062816616" />
+        <entry key="app/src/main/res/layout/categorie_detail_frame1.xml" value="0.1828774062816616" />
+        <entry key="app/src/main/res/layout/categorie_detail_frame2.xml" value="0.1828774062816616" />
+        <entry key="app/src/main/res/layout/map_user_interface.xml" value="0.1828774062816616" />
         <entry key="app/src/main/res/menu/main_bottom_nav.xml" value="0.28229166666666666" />
       </map>
     </option>

@@ -53,6 +53,7 @@
                     android:background="@color/logo_bar_color"
                     android:layout_margin="10dp"/>
                 <ImageButton
+                    android:id="@+id/movie"
                     android:layout_width="130dp"
                     android:layout_height="130dp"
                     android:src="@drawable/movie"
@@ -78,6 +79,7 @@
     </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

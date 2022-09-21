@@ -31,16 +31,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".Categorie_detail"
             android:exported="false"/>
         <activity android:name=".detailed_category_1"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false"/>
+        <activity android:name=".Map_UserInterface"
+            android:exported="false"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <meta-data android:name="com.kakao.sdk.AppKey" android:value="dee293f266d88b85dd1afaef6a0f3814"/>
     </application>
 

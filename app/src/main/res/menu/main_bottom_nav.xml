@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_baseline_person_24"
         android:title="Person" />
     <item
-        android:id="@+id/setting"
+        android:id="@+id/search"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="Search" />
     <item

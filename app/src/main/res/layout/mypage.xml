@@ -68,6 +68,7 @@
                     android:gravity="end"
                     android:text="@string/UserIdValue" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/my_page_account_Layout2"
                 android:layout_width="match_parent"
@@ -94,6 +95,7 @@
                     android:gravity="end"
                     android:text="@string/UserNameValue" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/my_page_account_Layout3"
                 android:layout_width="match_parent"

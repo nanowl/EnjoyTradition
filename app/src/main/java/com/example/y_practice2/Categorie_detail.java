@@ -1,10 +1,15 @@
 package com.example.y_practice2;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import me.relex.circleindicator.CircleIndicator3;
 
@@ -20,6 +25,27 @@ public class Categorie_detail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.categorie_detail);
 
+        BottomNavigationView menu = findViewById(R.id.bottomNavigationView);
+
+        menu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.person:
+//                        Intent mypage = new Intent(getApplicationContext(),)
+                        return true;
+                    case R.id.search:
+                        Intent search = new Intent(getApplicationContext(),Map_UserInterface.class);
+                        startActivity(search);
+                        overridePendingTransition(0, 0); //애니메이션 없애기
+                    case R.id.home:
+                        Intent homepage = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(homepage);
+                        overridePendingTransition(0, 0); //애니메이션 없애기
+                }
+                return false;
+            }
+        });
 
         /**
          * 가로 슬라이드 뷰 Fragment

@@ -20,9 +20,11 @@
         <entry key="..\:/androidstudio/EnjoyTradition/app/src/main/res/layout/activity_list_item.xml" value="0.17572463768115942" />
         <entry key="..\:/androidstudio/EnjoyTradition/app/src/main/res/layout/activity_main.xml" value="0.17572463768115942" />
         <entry key="..\:/androidstudio/EnjoyTradition/app/src/main/res/layout/categorie_detail_frame1.xml" value="0.22826086956521738" />
+        <entry key="app/src/main/res/drawable/ic_baseline_add_location_24.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.124" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.124" />
         <entry key="app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.124" />
+        <entry key="app/src/main/res/layout/activity_busking_category.xml" value="0.1828774062816616" />
         <entry key="app/src/main/res/layout/activity_detailed_category1.xml" value="0.1828774062816616" />
         <entry key="app/src/main/res/layout/activity_list_item.xml" value="0.1828774062816616" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20163116455078128" />

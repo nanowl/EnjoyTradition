@@ -46,6 +46,7 @@
                 android:orientation="vertical"
                 android:background="@drawable/main_gridlayout_line">
                 <ImageButton
+                    android:id="@+id/stage"
                     android:layout_width="130dp"
                     android:layout_height="130dp"
                     android:src="@drawable/stage"
@@ -61,6 +62,7 @@
                     android:background="@color/logo_bar_color"
                     android:layout_margin="10dp"/>
                 <ImageButton
+                    android:id="@+id/concert"
                     android:layout_width="130dp"
                     android:layout_height="130dp"
                     android:src="@drawable/concert"
@@ -68,6 +70,7 @@
                     android:background="@color/logo_bar_color"
                     android:layout_margin="10dp"/>
                 <ImageButton
+                    android:id="@+id/busking"
                     android:layout_width="130dp"
                     android:layout_height="130dp"
                     android:src="@drawable/busker"

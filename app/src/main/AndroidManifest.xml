@@ -19,7 +19,9 @@
         android:theme="@style/Theme.Y_practice2"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".Edit_member"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -37,11 +39,9 @@
             android:exported="false" />
         <activity
             android:name=".Map_UserInterface"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".busking_category"-->
-<!--            android:exported="false" />-->
-
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".busking_category" -->
+        <!-- android:exported="false" /> -->
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="dee293f266d88b85dd1afaef6a0f3814 " />

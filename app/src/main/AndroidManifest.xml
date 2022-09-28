@@ -38,9 +38,8 @@
         <activity
             android:name=".Map_UserInterface"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".busking_category"-->
-<!--            android:exported="false" />-->
+        <activity android:name=".busking_category"
+            android:exported="false" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"

@@ -10,75 +10,10 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/main_frame"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/LogoName"
-                android:textSize="20dp"
-                android:textAlignment="center"
-                android:padding="10dp"
-                android:textColor="@color/Base_text_color"
-                android:background="@drawable/main_textview_logo"
-                tools:ignore="MissingConstraints"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:paddingBottom="10dp"
-                android:paddingLeft="10dp"
-                android:textSize="20sp"
-                android:textColor="@color/Category"
-                android:text="Category"/>
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="1000dp"
-                android:columnCount="2"
-                android:rowCount="2"
-                android:padding="40dp"
-                android:orientation="vertical"
-                android:background="@drawable/main_gridlayout_line">
-                <ImageButton
-                    android:id="@+id/stage"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:src="@drawable/stage"
-                    android:scaleType="fitXY"
-                    android:background="@color/logo_bar_color"
-                    android:layout_margin="10dp"/>
-                <ImageButton
-                    android:id="@+id/movie"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:src="@drawable/movie"
-                    android:scaleType="fitXY"
-                    android:background="@color/logo_bar_color"
-                    android:layout_margin="10dp"/>
-                <ImageButton
-                    android:id="@+id/concert"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:src="@drawable/concert"
-                    android:scaleType="fitXY"
-                    android:background="@color/logo_bar_color"
-                    android:layout_margin="10dp"/>
-                <ImageButton
-                    android:id="@+id/busking"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:src="@drawable/busker"
-                    android:scaleType="fitXY"
-                    android:background="@color/logo_bar_color"
-                    android:layout_margin="10dp"/>
-            </GridLayout>
-        </LinearLayout>
+            android:layout_height="match_parent"/>
     </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

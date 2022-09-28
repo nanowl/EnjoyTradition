@@ -2,83 +2,89 @@ package com.example.y_practice2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+    Main_Fragment main_fragment;
+    Mypage_Fragment mypage_fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //        getHashKey(); //키해시를 호출
-
+        main_fragment = new Main_Fragment();
+        mypage_fragment = new Mypage_Fragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, main_fragment).commit();
         ImageButton moviebutton = findViewById(R.id.movie);
         ImageButton stagebutton = findViewById(R.id.stage);
         ImageButton concertbutton = findViewById(R.id.concert);
         ImageButton buskingbutton = findViewById(R.id.busking);
+//      하단바 선언
         BottomNavigationView menu = findViewById(R.id.bottomNavigationView);
 
-        stagebutton.setOnClickListener(stagebuttonlistener);
-        concertbutton.setOnClickListener(concertbuttonlistener);
-        buskingbutton.setOnClickListener(buskingbuttonlistener);
-        moviebutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),detailed_category_1.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-            }
-        });
 
-//        menu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//        stagebutton.setOnClickListener(stagebuttonlistener);
+//        concertbutton.setOnClickListener(concertbuttonlistener);
+//        buskingbutton.setOnClickListener(buskingbuttonlistener);
+//        moviebutton.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch (item.getItemId()){
-//                    case R.id.person:
-////                        Intent mypage = new Intent(getApplicationContext(),)
-//                        return true;
-//                    case R.id.search:
-//                        Intent search = new Intent(getApplicationContext(),Map_UserInterface.class);
-//                        startActivity(search);
-//                        overridePendingTransition(0, 0); //애니메이션 없애기
-//                    case R.id.home:
-//                        Intent homepage = new Intent(getApplicationContext(),MainActivity.class);
-//                        startActivity(homepage);
-//                        overridePendingTransition(0, 0); //애니메이션 없애기
-//                }
-//                return false;
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getApplicationContext(),detailed_category_1.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                startActivity(intent);
 //            }
 //        });
+
+        menu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.person:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, mypage_fragment).commit();
+                        return true;
+                    case R.id.search:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, main_fragment).commit();
+                        return true;
+                    case R.id.home:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, main_fragment).commit();
+                        return true;
+                }
+                return false;
+            }
+        });
     }
-    View.OnClickListener stagebuttonlistener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(getApplicationContext(),detailed_category_1.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(intent);
-        }
-    };
-    View.OnClickListener concertbuttonlistener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(getApplicationContext(),detailed_category_1.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(intent);
-        }
-    };
-    View.OnClickListener buskingbuttonlistener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(getApplicationContext(),busking_category.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(intent);
-        }
-    };
+//    View.OnClickListener stagebuttonlistener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            Intent intent = new Intent(getApplicationContext(),detailed_category_1.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//            startActivity(intent);
+//        }
+//    };
+//    View.OnClickListener concertbuttonlistener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            Intent intent = new Intent(getApplicationContext(),detailed_category_1.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//            startActivity(intent);
+//        }
+//    };
+//    View.OnClickListener buskingbuttonlistener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            Intent intent = new Intent(getApplicationContext(),busking_category.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//            startActivity(intent);
+//        }
+//    };
 
     //해당 앱의 키 해시를 구하는 로직
 //    private void getHashKey() {

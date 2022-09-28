@@ -94,6 +94,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:text="수정완료"
+        android:backgroundTint="@color/black"
         android:textColor="@color/white"
         android:textSize="20dp" />
 

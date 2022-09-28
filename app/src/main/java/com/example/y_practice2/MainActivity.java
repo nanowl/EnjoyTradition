@@ -1,28 +1,40 @@
 package com.example.y_practice2;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.question_and_answer);
+        setContentView(R.layout.activity_main);
 //        getHashKey(); //키해시를 호출
 
-//        ImageButton button = findViewById(R.id.movie);
-//        BottomNavigationView menu = findViewById(R.id.bottomNavigationView);
-//
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(),Categorie_detail.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-//                startActivity(intent);
-//            }
-//        });
+        ImageButton moviebutton = findViewById(R.id.movie);
+        ImageButton stagebutton = findViewById(R.id.stage);
+        ImageButton concertbutton = findViewById(R.id.concert);
+        ImageButton buskingbutton = findViewById(R.id.busking);
+        BottomNavigationView menu = findViewById(R.id.bottomNavigationView);
+
+        stagebutton.setOnClickListener(stagebuttonlistener);
+        concertbutton.setOnClickListener(concertbuttonlistener);
+        buskingbutton.setOnClickListener(buskingbuttonlistener);
+        moviebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),detailed_category_1.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
+
 //        menu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 //            @Override
 //            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -43,8 +55,30 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
     }
-
-
+    View.OnClickListener stagebuttonlistener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(getApplicationContext(),detailed_category_1.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+        }
+    };
+    View.OnClickListener concertbuttonlistener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(getApplicationContext(),detailed_category_1.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+        }
+    };
+    View.OnClickListener buskingbuttonlistener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(getApplicationContext(),busking_category.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+        }
+    };
 
     //해당 앱의 키 해시를 구하는 로직
 //    private void getHashKey() {

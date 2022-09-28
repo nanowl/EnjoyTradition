@@ -15,6 +15,7 @@ public class Map_UserInterface extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_user_interface);
+
         searchbar = R.id.toplayout;
         MapView mapView = new MapView(this);
 

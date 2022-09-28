@@ -14,6 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
     Main_Fragment main_fragment;
     Mypage_Fragment mypage_fragment;
+    Map_Fragment map_fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 //        getHashKey(); //키해시를 호출
         main_fragment = new Main_Fragment();
         mypage_fragment = new Mypage_Fragment();
+        map_fragment = new Map_Fragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, main_fragment).commit();
         ImageButton moviebutton = findViewById(R.id.movie);
         ImageButton stagebutton = findViewById(R.id.stage);
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, mypage_fragment).commit();
                         return true;
                     case R.id.search:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, main_fragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, map_fragment).commit();
                         return true;
                     case R.id.home:
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, main_fragment).commit();

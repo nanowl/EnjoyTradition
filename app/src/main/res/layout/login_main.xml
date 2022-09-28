@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    tools:context=".Login_main">
+    <!--로고-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:text="Culture Mk.2"
+        android:textSize="30dp"
+        android:textColor="#D10AB6"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        />
+    <!--아이디 비번 값 입력 로그인버튼-->
+    <EditText
+        android:id="@+id/et_id"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:maxLength="10"
+        android:hint="ID"/>
+
+    <EditText
+        android:id="@+id/et_pw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:inputType="textPassword"
+        android:maxLength="16"
+        android:hint="PassWord"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:text="로그인하기"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp"
+        />
+
+    <!--회원가입 -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp">
+        <TextView
+            android:id="@+id/tv_res_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아직 회원이 아니신가요?"
+            android:layout_marginLeft="70dp"
+            android:textSize="15dp"
+            />
+        <TextView
+            android:id="@+id/tv_res"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="회원가입하기"
+            android:textColor="#00A6FF"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+    <!--회원정보찾기 -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="정보를 잊으셨나요?"
+            android:layout_marginLeft="70dp"
+            android:textSize="15dp"
+            />
+        <TextView
+            android:id="@+id/tv_find_member"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="회원정보찾기"
+            android:textColor="#00A6FF"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            />
+    </LinearLayout>
+</LinearLayout>

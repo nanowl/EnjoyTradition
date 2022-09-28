@@ -1,6 +1,7 @@
 package com.example.y_practice2;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +20,10 @@ public class Map_UserInterface extends AppCompatActivity {
         searchbar = R.id.toplayout;
         MapView mapView = new MapView(this);
 
+
         ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
         mapViewContainer.addView(mapView);
+
+        Log.d("eoe",mapView.toString());
     }
 }

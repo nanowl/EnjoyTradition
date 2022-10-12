@@ -9,7 +9,9 @@
 
     <string name="UserPhoneValue">UserPhone</string>
     <string name="SystemPhoneValue">SystemPhone</string>
-
+    
     <string name="UserNameValue">UserName</string>
     <string name="SystemNameValue">SystemName</string>
+    
+    <string name="CustomerServiceValue">CustomerService</string>
 </resources>

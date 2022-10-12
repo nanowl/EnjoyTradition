@@ -20,6 +20,10 @@ public class Categorie_detail extends AppCompatActivity {
     private int num_page = 4;
     private CircleIndicator3 mIndicator;
 
+    Main_Fragment main_fragment;
+    Mypage_Fragment mypage_fragment;
+    Map_Fragment map_fragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

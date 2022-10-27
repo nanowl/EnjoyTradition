@@ -44,9 +44,11 @@
             android:exported="false"/>
         <activity android:name=".Customer_center"
             android:exported="false"/>
+        <activity android:name=".Login_main"
+            android:exported="false"/>
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="dee293f266d88b85dd1afaef6a0f3814 " />
+            android:value="dee293f266d88b85dd1afaef6a0f3814 "/>
     </application>
 
 </manifest>

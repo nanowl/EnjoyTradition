@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 //      하단바 선언
         BottomNavigationView menu = findViewById(R.id.bottomNavigationView);
 
+        Bundle extras = getIntent().getExtras(); //로그인했을경우 login_main에서 넘겨주는 값 받는 변수
+
 
 //        stagebutton.setOnClickListener(stagebuttonlistener);
 //        concertbutton.setOnClickListener(concertbuttonlistener);
@@ -45,13 +47,17 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
+
         menu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.person:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, mypage_fragment).commit();
-                        return true;
+                        if (extras != null && !extras.equals("")) {
+                            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, mypage_fragment).commit();
+                            return true;
+                        } Intent intent = new Intent(getApplicationContext(),Login_main.class);
+                          startActivity(intent);
                     case R.id.search:
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, map_fragment).commit();
                         return true;

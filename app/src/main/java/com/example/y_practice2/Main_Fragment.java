@@ -42,16 +42,19 @@ public class Main_Fragment extends Fragment implements View.OnClickListener{
                 Intent intent2 = new Intent(getActivity(),detailed_category_1.class);
                 intent2.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent2);
+                Log.d("onclick","btnNum : "+ R.id.stage);
                 break;
             case R.id.concert:
                 Intent intent3 = new Intent(getActivity(),detailed_category_1.class);
                 intent3.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent3);
+                Log.d("onclick","btnNum : "+ R.id.concert);
                 break;
             case R.id.busking:
                 Intent intent4 = new Intent(getActivity(),busking_category.class);
                 intent4.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent4);
+                Log.d("onclick","btnNum : "+ R.id.busking);
                 break;
         }
     }

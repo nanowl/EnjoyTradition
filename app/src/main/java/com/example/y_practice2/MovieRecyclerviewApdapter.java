@@ -16,6 +16,10 @@ public class MovieRecyclerviewApdapter extends RecyclerView.Adapter<MovieRecycle
     private ArrayList<MovieItems> posters = new ArrayList<MovieItems>();
     private MainRecyclerviewClickListenerInterface mainRecyclerviewClickListenerInterface;
 
+    public ArrayList<MovieItems> getPosterItmes(){
+        return posters;
+    }
+
     public void setPosterItems(ArrayList<MovieItems> posterItems) {
         this.posters = posterItems;
     }
@@ -63,6 +67,17 @@ public class MovieRecyclerviewApdapter extends RecyclerView.Adapter<MovieRecycle
             iv_rvimg = itemView.findViewById(R.id.iv_rvimg);
             tv_rvt = itemView.findViewById(R.id.tv_rvt);
             tv_rvc = itemView.findViewById(R.id.tv_rvc);
+            iv_rvimg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    if(pos != RecyclerView.NO_POSITION){
+                        if (mainRecyclerviewClickListenerInterface != null){
+                            mainRecyclerviewClickListenerInterface.onItemClick(ViewHolder.this,view,pos);
+                        }
+                    }
+                }
+            });
         }
 
         public void setItem(MovieItems movieItems) {

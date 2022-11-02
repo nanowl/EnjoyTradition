@@ -111,9 +111,9 @@ public class detailed_category_1 extends AppCompatActivity {
     }
     public void recyclerViewMoviedataSetting(){
         recyclerViewMovieListSetting();
-
-        movieRecyclerviewApdapter.addItem(new MovieItems(R.drawable.busker,"영화관이름","내용"));
-        movieRecyclerviewApdapter.addItem(new MovieItems(R.drawable.busker,"제발되라","내용"));
+        for (int i = 0; i < 5; i++){
+            movieRecyclerviewApdapter.addItem(new MovieItems(R.drawable.busker,"영화관이름","내용"));
+        }
         recyclerView.setAdapter(movieRecyclerviewApdapter);
 
         movieRecyclerviewApdapter.setClickListenerInterface(new MainRecyclerviewClickListenerInterface() {

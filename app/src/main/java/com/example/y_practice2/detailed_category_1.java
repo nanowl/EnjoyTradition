@@ -5,7 +5,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -18,11 +20,15 @@ public class detailed_category_1 extends AppCompatActivity {
     Main_Fragment main_fragment;
     Mypage_Fragment mypage_fragment;
     Map_Fragment map_fragment;
-
+    TextView tv_topname;
+    String textchange = "";
+    String logincheck = "";
     String [] fruitsList = {"오늘은 새우깡","남쪽으로 도망가","쏘아올린 북극곰",
             "오늘은 새우깡","남쪽으로 도망가","쏘아올린 북극곰"};
     ListView listView;
     TextView textView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +38,29 @@ public class detailed_category_1 extends AppCompatActivity {
         map_fragment = new Map_Fragment();
 
         BottomNavigationView menu = findViewById(R.id.bottomNavigationView);
+        tv_topname = findViewById(R.id.tv_deteailed_category1);
+
+        Bundle extras = getIntent().getExtras(); //Main_Fragment에서 넘겨주는 값 받는 변수
+
+        //쉐어드
+        SharedPreferences pref = getSharedPreferences("token", MODE_PRIVATE);    // token 이름의 기본모드 설정
+        logincheck = pref.getString("Login", "");
+
+        if (extras != null) {
+            textchange = extras.getString("movie"); //key값인 movie를 받아와 버튼을 구분
+        }
+
+        //버튼을 구분하여 상단 메시지 변경
+        //영화관
+        if (textchange.equals("영화관")){
+            tv_topname.setText("영화관");
+        }//연극장
+        else if (textchange.equals("연극장")){
+            tv_topname.setText("연극장");
+        }//콘서트장
+        else if (textchange.equals("공연장")){
+            tv_topname.setText("공연장");
+        }
 
         textView = findViewById(R.id.tv_deteailed_category1);
         listView = findViewById(R.id.v_list);
@@ -45,7 +74,12 @@ public class detailed_category_1 extends AppCompatActivity {
                     case R.id.person:
                         textView.setVisibility(View.GONE);
                         listView.setVisibility(View.GONE);
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, mypage_fragment).commit();
+                        if(logincheck.equals("")){
+                            Intent intent = new Intent(getApplicationContext(),Login_main.class);
+                            startActivity(intent);
+                        }else {
+                            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, mypage_fragment).commit();
+                        }
                         return true;
                     case R.id.search:
                         textView.setVisibility(View.GONE);

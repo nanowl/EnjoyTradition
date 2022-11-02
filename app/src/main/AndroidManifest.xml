@@ -48,6 +48,8 @@
             android:exported="false"/>
         <activity android:name=".Sign_up"
             android:exported="false"/>
+        <activity android:name=".Request_Permission"
+            android:exported="false"/>
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="dee293f266d88b85dd1afaef6a0f3814 "/>

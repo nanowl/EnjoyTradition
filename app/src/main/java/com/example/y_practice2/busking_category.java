@@ -3,9 +3,11 @@ package com.example.y_practice2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
@@ -20,6 +22,7 @@ public class busking_category extends AppCompatActivity {
     Main_Fragment main_fragment;
     Mypage_Fragment mypage_fragment;
     Map_Fragment map_fragment;
+    Button request_permission;
 
 
     @Override
@@ -30,7 +33,8 @@ public class busking_category extends AppCompatActivity {
         main_fragment = new Main_Fragment();
         mypage_fragment = new Mypage_Fragment();
         map_fragment = new Map_Fragment();
-
+        request_permission = findViewById(R.id.btn_request_permission);
+        request_permission.setOnClickListener(request_permission_click);
         relativeLayout = findViewById(R.id.busking_relativelayout);
 
         BottomNavigationView menu = findViewById(R.id.bottomNavigationView);
@@ -63,4 +67,11 @@ public class busking_category extends AppCompatActivity {
             }
         });
     }
+    View.OnClickListener request_permission_click = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(getApplicationContext(),Request_Permission.class);
+            startActivity(intent);
+        }
+    };
 }

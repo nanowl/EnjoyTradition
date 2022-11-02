@@ -1,5 +1,6 @@
 package com.example.y_practice2;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,23 +15,29 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.exoplayer2.util.Log;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Customer_center extends AppCompatActivity {
     Main_Fragment main_fragment;
     Mypage_Fragment mypage_fragment;
     Map_Fragment map_fragment;
-
+    String logincheck = "";
     TextView textView;
-    String[] items = {"계정 문제","버스킹 문의","기타 문의"};
+    String select_text;
+    String[] items = {"문의사항을 선택하여 주세요","계정 문제","버스킹 문의","기타 문의"};
 
     RelativeLayout relativeLayout;
     ScrollView scrollView;
     FrameLayout frameLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_and_answer);
+        //쉐어드
+        SharedPreferences pref = getSharedPreferences("token", MODE_PRIVATE);    // token 이름의 기본모드 설정
+        logincheck = pref.getString("Login", "");
 
         main_fragment = new Main_Fragment();
         mypage_fragment = new Mypage_Fragment();
@@ -50,17 +57,17 @@ public class Customer_center extends AppCompatActivity {
 
         spinner.setAdapter(adapter);
 
-        textView = findViewById(R.id.tv_customer_center);
+
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                textView.setText(items[i]);
+                select_text = items[i];
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                textView.setText("");
+                select_text = "";
             }
         });
 

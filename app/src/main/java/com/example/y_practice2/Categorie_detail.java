@@ -215,9 +215,10 @@ public class Categorie_detail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Reservation_Page.class);
-                startActivity(intent);
                 intent.putExtra("price", 10000);
                 intent.putExtra("today", mDate);
+                startActivity(intent);
+
                 Log.i("mdate:", String.valueOf(mDate));
             }
         });

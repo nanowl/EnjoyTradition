@@ -3,12 +3,13 @@ package com.example.y_practice2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.y_practice2.vo.MovieItems;
 
 import java.util.ArrayList;
 
@@ -78,6 +79,25 @@ public class MovieRecyclerviewApdapter extends RecyclerView.Adapter<MovieRecycle
                     }
                 }
             });
+            tv_rvt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    if (mainRecyclerviewClickListenerInterface != null){
+                        mainRecyclerviewClickListenerInterface.onItemClick(ViewHolder.this,view,pos);
+                    }
+                }
+            });
+            tv_rvc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    if (mainRecyclerviewClickListenerInterface != null){
+                        mainRecyclerviewClickListenerInterface.onItemClick(ViewHolder.this,view,pos);
+                    }
+                }
+            });
+
         }
 
         public void setItem(MovieItems movieItems) {

@@ -1,7 +1,6 @@
 package com.example.y_practice2;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,9 +11,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.example.y_practice2.vo.MovieItems;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class detailed_category_1 extends AppCompatActivity {
@@ -22,12 +22,12 @@ public class detailed_category_1 extends AppCompatActivity {
     Main_Fragment main_fragment;
     Mypage_Fragment mypage_fragment;
     Map_Fragment map_fragment;
+    FrameLayout main_frame;
     TextView tv_topname;
     String textchange = "";
     String logincheck = "";
     String [] fruitsList = {"오늘은 새우깡","남쪽으로 도망가","쏘아올린 북극곰",
             "오늘은 새우깡","남쪽으로 도망가","쏘아올린 북극곰"};
-    ListView listView;
     TextView textView;
     private RecyclerView recyclerView;
     MovieRecyclerviewApdapter movieRecyclerviewApdapter;
@@ -43,13 +43,13 @@ public class detailed_category_1 extends AppCompatActivity {
 
         BottomNavigationView menu = findViewById(R.id.bottomNavigationView);
         tv_topname = findViewById(R.id.tv_deteailed_category1);
-
+        main_frame = findViewById(R.id.main_frame);
         Bundle extras = getIntent().getExtras(); //Main_Fragment에서 넘겨주는 값 받는 변수
 
         //쉐어드
         SharedPreferences pref = getSharedPreferences("token", MODE_PRIVATE);    // token 이름의 기본모드 설정
         logincheck = pref.getString("Login", "");
-
+        Log.d("뭐지",logincheck);
         if (extras != null) {
             textchange = extras.getString("movie"); //key값인 movie를 받아와 버튼을 구분
         }
@@ -68,9 +68,6 @@ public class detailed_category_1 extends AppCompatActivity {
         recyclerViewMoviedataSetting();
 
         textView = findViewById(R.id.tv_deteailed_category1);
-//        listView = findViewById(R.id.v_list);
-//        CustomBaseAdapter customBaseAdapter = new CustomBaseAdapter(getApplication(),fruitsList);
-//        listView.setAdapter(customBaseAdapter);
 
 
         menu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -79,22 +76,25 @@ public class detailed_category_1 extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.person:
                         textView.setVisibility(View.GONE);
-                        listView.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.GONE);
                         if(logincheck.equals("")){
                             Intent intent = new Intent(getApplicationContext(),Login_main.class);
                             startActivity(intent);
                         }else {
+                            main_frame.setVisibility(View.VISIBLE);
                             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, mypage_fragment).commit();
                         }
                         return true;
                     case R.id.search:
                         textView.setVisibility(View.GONE);
-                        listView.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.GONE);
+                        main_frame.setVisibility(View.VISIBLE);
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, map_fragment).commit();
                         return true;
                     case R.id.home:
                         textView.setVisibility(View.GONE);
-                        listView.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.GONE);
+                        main_frame.setVisibility(View.VISIBLE);
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, main_fragment).commit();
                         return true;
                 }
@@ -122,6 +122,7 @@ public class detailed_category_1 extends AppCompatActivity {
                 MovieItems items = movieRecyclerviewApdapter.getItem(position);
                 Intent intent = new Intent(getApplicationContext(),Categorie_detail.class);
                 intent.putExtra("movieid",position);
+                Log.d("movieid",""+position);
                 startActivity(intent);
             }
         });

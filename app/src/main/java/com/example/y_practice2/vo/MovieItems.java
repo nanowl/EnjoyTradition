@@ -1,4 +1,4 @@
-package com.example.y_practice2;
+package com.example.y_practice2.vo;
 
 public class MovieItems {
     int iv_movielist;

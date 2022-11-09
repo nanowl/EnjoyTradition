@@ -126,7 +126,20 @@
                     android:textSize="20sp"
                     android:textColor="@color/Base_text_color"
                     android:text="current-list"/>
+
+                <Button
+                    android:id="@+id/btn_reservation"
+                    android:enabled="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:text="예매하기"
+                    android:textColor="#F6E7E7"
+                    android:textSize="20dp"
+                    android:backgroundTint="#0FD8D8"/>
+
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

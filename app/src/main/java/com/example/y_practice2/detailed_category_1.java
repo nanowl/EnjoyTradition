@@ -14,8 +14,25 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.example.y_practice2.retrofit.Theater_interface;
+import com.example.y_practice2.retrofit.busking_interface;
+import com.example.y_practice2.vo.BuskingItems;
+import com.example.y_practice2.vo.Busking_vo;
 import com.example.y_practice2.vo.MovieItems;
+import com.example.y_practice2.vo.Theater_vo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class detailed_category_1 extends AppCompatActivity {
 
@@ -31,6 +48,15 @@ public class detailed_category_1 extends AppCompatActivity {
     TextView textView;
     private RecyclerView recyclerView;
     MovieRecyclerviewApdapter movieRecyclerviewApdapter;
+    Gson gson = new GsonBuilder().setLenient().create();
+    Theater_interface theater_interface;
+    JsonArray jsonArray;
+    TypeToken<List<Theater_vo>> typeToken =
+            new TypeToken<List<Theater_vo>>() {};
+    Gson gson2 = new Gson();
+    int[] theaterid;
+    String[] theatername;
+    String[] theater_phone_number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +79,12 @@ public class detailed_category_1 extends AppCompatActivity {
         if (extras != null) {
             textchange = extras.getString("movie"); //key값인 movie를 받아와 버튼을 구분
         }
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://caramels.kro.kr:9632/")
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        theater_interface = retrofit.create(Theater_interface.class);
 
         //버튼을 구분하여 상단 메시지 변경
         //영화관
@@ -111,10 +143,13 @@ public class detailed_category_1 extends AppCompatActivity {
     }
     public void recyclerViewMoviedataSetting(){
         recyclerViewMovieListSetting();
-        for (int i = 0; i < 5; i++){
-            movieRecyclerviewApdapter.addItem(new MovieItems(R.drawable.busker,"영화관이름","내용"));
+        if (textchange.equals("영화관")){
+            movie();
+        } else if(textchange.equals("공연장")){
+
+        } else if (textchange.equals("연극장")){
+
         }
-        recyclerView.setAdapter(movieRecyclerviewApdapter);
 
         movieRecyclerviewApdapter.setClickListenerInterface(new MainRecyclerviewClickListenerInterface() {
             @Override
@@ -127,4 +162,38 @@ public class detailed_category_1 extends AppCompatActivity {
             }
         });
     }
+    public void movie(){
+        Call<JsonArray> call = theater_interface.getTheater();
+        call.enqueue(new Callback<JsonArray>() {
+            @Override
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                Log.d("성공", response.code() + "");
+                if (response.isSuccessful()) {
+
+                    jsonArray = response.body();
+                    theaterid = new int[jsonArray.size()];
+                    theatername = new String[jsonArray.size()];
+                    theater_phone_number = new String[jsonArray.size()];
+                    List<Theater_vo> list =
+                            gson2.fromJson(jsonArray, typeToken.getType());
+                    for (int i = 0; i < 6; i++) {
+                        final int index = i;
+                        theaterid[index] = list.get(index).getTheater_id();
+                        theatername[index] = list.get(index).getTheater_name();
+                        theater_phone_number[index] = list.get(index).getTheater_phone_number();
+                        movieRecyclerviewApdapter.addItem(new MovieItems(R.drawable.busker,theatername[i],theater_phone_number[i]));
+                    }
+                    recyclerView.setAdapter(movieRecyclerviewApdapter);
+                    Log.d("결과값", theaterid[0]+"");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonArray> call, Throwable t) {
+                Log.d("결과값", t.getMessage());
+            }
+        });
+
+    }
+
     }

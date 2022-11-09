@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -47,11 +48,12 @@ public class Main_Fragment extends Fragment implements View.OnClickListener{
                 Log.d("onclick","btnNum : "+ R.id.stage);
                 break;
             case R.id.concert:
-                Intent intent3 = new Intent(getActivity(),detailed_category_1.class);
-                intent3.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intent3.putExtra("movie","공연장");
-                startActivity(intent3);
-                Log.d("onclick","btnNum : "+ R.id.concert);
+//                Intent intent3 = new Intent(getActivity(),detailed_category_1.class);
+//                intent3.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                intent3.putExtra("movie","공연장");
+//                startActivity(intent3);
+//                Log.d("onclick","btnNum : "+ R.id.concert);
+                 Toast.makeText(getActivity(),"추후 추가예정입니다.",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.busking:
                 Intent intent4 = new Intent(getActivity(),busking_category.class);

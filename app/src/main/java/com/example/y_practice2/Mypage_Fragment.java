@@ -15,8 +15,10 @@ public class Mypage_Fragment extends Fragment implements View.OnClickListener{
         View view = inflater.inflate(R.layout.mypage_frame, container, false);
 
         Button button = view.findViewById(R.id.btn_customer_center);
-
+        Button reservation_btn_list = view.findViewById(R.id.btn_request_center);
         button.setOnClickListener(this);
+        reservation_btn_list.setOnClickListener(this);
+
         return view;
     }
 
@@ -27,6 +29,9 @@ public class Mypage_Fragment extends Fragment implements View.OnClickListener{
                 Intent intent = new Intent(getActivity(),Customer_center.class);
                 startActivity(intent);
                 break;
+            case R.id.btn_request_center:
+                Intent intent2 = new Intent(getActivity(),reservation_list_web_view.class);
+                startActivity(intent2);
         }
 
     }

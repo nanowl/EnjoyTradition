@@ -15,9 +15,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.y_practice2.retrofit.Theater_interface;
-import com.example.y_practice2.retrofit.busking_interface;
-import com.example.y_practice2.vo.BuskingItems;
-import com.example.y_practice2.vo.Busking_vo;
+import com.example.y_practice2.retrofit.Concert_interface;
+import com.example.y_practice2.vo.ConcertHall;
 import com.example.y_practice2.vo.MovieItems;
 import com.example.y_practice2.vo.Theater_vo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -50,14 +49,20 @@ public class detailed_category_1 extends AppCompatActivity {
     MovieRecyclerviewApdapter movieRecyclerviewApdapter;
     Gson gson = new GsonBuilder().setLenient().create();
     Theater_interface theater_interface;
+    Concert_interface concert_interface;
     JsonArray jsonArray;
     TypeToken<List<Theater_vo>> typeToken =
             new TypeToken<List<Theater_vo>>() {};
+    TypeToken<List<ConcertHall>> typeToken2 =
+            new TypeToken<List<ConcertHall>>() {};
     Gson gson2 = new Gson();
     int[] theaterid;
     String[] theatername;
     String[] theater_phone_number;
 
+    int[] concertid;
+    String[] concertname;
+    String[] concertnumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +90,7 @@ public class detailed_category_1 extends AppCompatActivity {
                 .build();
 
         theater_interface = retrofit.create(Theater_interface.class);
+        concert_interface = retrofit.create(Concert_interface.class);
 
         //버튼을 구분하여 상단 메시지 변경
         //영화관
@@ -148,7 +154,7 @@ public class detailed_category_1 extends AppCompatActivity {
         } else if(textchange.equals("공연장")){
 
         } else if (textchange.equals("연극장")){
-
+            concert();
         }
 
         movieRecyclerviewApdapter.setClickListenerInterface(new MainRecyclerviewClickListenerInterface() {
@@ -194,6 +200,40 @@ public class detailed_category_1 extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void concert(){
+        Call<JsonArray> call = concert_interface.getconcert();
+        call.enqueue(new Callback<JsonArray>() {
+            @Override
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                Log.d("성공", response.code() + "");
+                if (response.isSuccessful()) {
+
+                    jsonArray = response.body();
+                    concertid = new int[jsonArray.size()];
+                    concertname = new String[jsonArray.size()];
+                    concertnumber = new String[jsonArray.size()];
+                    List<ConcertHall> list =
+                            gson2.fromJson(jsonArray, typeToken2.getType());
+                    for (int i = 0; i < 5; i++) {
+                        final int index = i;
+                        concertid[index] = list.get(index).getConcert_hall_id();
+                        concertname[index] = list.get(index).getConcert_hall_name();
+                        concertnumber[index] = list.get(index).getConcert_hall_date();
+                        concertnumber[index] = concertnumber[index].substring(0,10);
+                        movieRecyclerviewApdapter.addItem(new MovieItems(R.drawable.busker,concertname[i],concertnumber[i]));
+                    }
+                    recyclerView.setAdapter(movieRecyclerviewApdapter);
+                    Log.d("결과값", concertid[0]+"");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonArray> call, Throwable t) {
+                Log.d("결과값", t.getMessage());
+            }
+        });
     }
 
     }

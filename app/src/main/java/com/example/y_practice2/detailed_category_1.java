@@ -222,8 +222,7 @@ public class detailed_category_1 extends AppCompatActivity {
                         final int index = i;
                         concertid[index] = list.get(index).getConcert_hall_id();
                         concertname[index] = list.get(index).getConcert_hall_name();
-                        concertnumber[index] = list.get(index).getConcert_hall_date();
-                        concertnumber[index] = concertnumber[index].substring(0,10);
+                        concertnumber[index] = list.get(index).getConcert_hall_address();
                         if (concertname[index].equals(concertname[index])){
                             movieRecyclerviewApdapter.addItem(new MovieItems(R.drawable.busker,concertname[i],concertnumber[i]));
                         }

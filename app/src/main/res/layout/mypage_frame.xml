@@ -217,7 +217,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@color/my_page_element_color"
                 android:padding="15dp"
-                android:text="@string/CustomerServiceValue"
+                android:text="ETC"
                 android:textColor="@color/Base_text_color" />
 
             <LinearLayout
@@ -226,17 +226,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginBottom="60dp"
                 android:background="@drawable/my_page_element_list"
-                android:orientation="horizontal"
                 android:gravity="center"
-                android:layout_marginBottom="60dp">
-                    <Button
-                        android:id="@+id/btn_customer_center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="고객센터"
-                        android:textColor="@color/Base_text_color"
-                        android:backgroundTint="@color/logo_bar_color"/>
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_customer_center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/logo_bar_color"
+                    android:text="고객센터"
+                    android:textColor="@color/Base_text_color" />
+                <Button
+                    android:id="@+id/btn_request_center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/logo_bar_color"
+                    android:text="예매내역확인"
+                    android:textColor="@color/Base_text_color"
+                    android:layout_marginLeft="15dp"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

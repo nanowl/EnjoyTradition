@@ -55,17 +55,17 @@ public class busking_category extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.person:
                         relativeLayout.setVisibility(View.GONE);
-                        listView.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.GONE);
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, mypage_fragment).commit();
                         return true;
                     case R.id.search:
                         relativeLayout.setVisibility(View.GONE);
-                        listView.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.GONE);
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, map_fragment).commit();
                         return true;
                     case R.id.home:
                         relativeLayout.setVisibility(View.GONE);
-                        listView.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.GONE);
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, main_fragment).commit();
                         return true;
                 }

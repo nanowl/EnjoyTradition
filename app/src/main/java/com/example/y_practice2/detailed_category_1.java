@@ -218,13 +218,15 @@ public class detailed_category_1 extends AppCompatActivity {
                     concertnumber = new String[jsonArray.size()];
                     List<ConcertHall> list =
                             gson2.fromJson(jsonArray, typeToken2.getType());
-                    for (int i = 0; i < 5; i++) {
+                    for (int i = 0; i < jsonArray.size(); i++) {
                         final int index = i;
                         concertid[index] = list.get(index).getConcert_hall_id();
                         concertname[index] = list.get(index).getConcert_hall_name();
                         concertnumber[index] = list.get(index).getConcert_hall_date();
                         concertnumber[index] = concertnumber[index].substring(0,10);
-                        movieRecyclerviewApdapter.addItem(new MovieItems(R.drawable.busker,concertname[i],concertnumber[i]));
+                        if (concertname[index].equals(concertname[index])){
+                            movieRecyclerviewApdapter.addItem(new MovieItems(R.drawable.busker,concertname[i],concertnumber[i]));
+                        }
                     }
                     recyclerView.setAdapter(movieRecyclerviewApdapter);
                     Log.d("결과값", concertid[0]+"");

@@ -163,6 +163,7 @@ public class detailed_category_1 extends AppCompatActivity {
                 MovieItems items = movieRecyclerviewApdapter.getItem(position);
                 Intent intent = new Intent(getApplicationContext(),Categorie_detail.class);
                 intent.putExtra("movieid",position);
+                intent.putExtra("place",textchange);
                 Log.d("movieid",""+position);
                 startActivity(intent);
             }

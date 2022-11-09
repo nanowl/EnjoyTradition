@@ -7,7 +7,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface Concert_interface {
-    @GET("concerts")
+    @GET("concert-have-theater")
     Call<JsonArray> getconcert();
 
     @GET("concerts/{concert_hall_id}")

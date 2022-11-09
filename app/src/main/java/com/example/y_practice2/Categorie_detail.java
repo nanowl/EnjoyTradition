@@ -25,6 +25,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 
+import java.util.Date;
 import java.util.List;
 
 import me.relex.circleindicator.CircleIndicator3;
@@ -101,7 +102,7 @@ public class Categorie_detail extends AppCompatActivity {
                     theater_name[0] = theaterList.get(0).getTheater_name();
                     theater_address[0] = theaterList.get(0).getTheater_road_address();
 
-                    Log.i("Test1", String.valueOf(theater_name[0]));
+                    Log.i("Test1", String.valueOf(id));
 
                     title.setText(theater_name[0]);
                     location.setText("주소 : \n" + theater_address[0]);
@@ -186,15 +187,15 @@ public class Categorie_detail extends AppCompatActivity {
                     busking_genre[0] = buskingList.get(0).getBusking_genre();
                     busking_username[0] = buskingList.get(0).getBusking_user_name();
                     busking_place_name[0] = buskingList.get(0).getBusking_place_name();
-                    busking_user_sns[0] = buskingList.get(0).getBusking_place_name();
+                    busking_user_sns[0] = buskingList.get(0).getBusking_user_sns();
 
                     Log.i("Test1", String.valueOf(busking_username[0]));
 
                     title.setText(busking_username[0]);
-                    location.setText("주소 : \n" + busking_address[0]);
+                    location.setText("주소 : \n" + busking_address[0] +" " + busking_place_name[0]);
                     current_list.setText("공연자 : " + busking_username[0] + "\n");
                     current_list.append("장르 : " + busking_genre[0] + "\n");
-                    current_list.append("instagram : " + busking_user_sns[0] + "\n");
+                    current_list.append("sns : " + busking_user_sns[0] + "\n");
 
                 }
 
@@ -205,6 +206,21 @@ public class Categorie_detail extends AppCompatActivity {
             });
         }
 
+        long mNow;
+        Date mDate;
+        mNow = System.currentTimeMillis();
+        mDate = new Date(mNow);
+
+        reserve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Reservation_Page.class);
+                startActivity(intent);
+                intent.putExtra("price", 10000);
+                intent.putExtra("today", mDate);
+                Log.i("mdate:", String.valueOf(mDate));
+            }
+        });
         menu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

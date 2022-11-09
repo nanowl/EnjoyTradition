@@ -14,9 +14,24 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import com.example.y_practice2.retrofit.busking_interface;
+import com.example.y_practice2.retrofit.customer_interface;
 import com.example.y_practice2.vo.BuskingItems;
+import com.example.y_practice2.vo.Busking_vo;
 import com.example.y_practice2.vo.MovieItems;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class busking_category extends AppCompatActivity {
 
@@ -31,6 +46,15 @@ public class busking_category extends AppCompatActivity {
     private RecyclerView recyclerView;
     BuskingRecyclerviewApdapter busRecyclerviewApdapter;
 
+    busking_interface busking_interface;
+    Gson gson = new GsonBuilder().setLenient().create();
+    String[] buskinglist;
+    String[] buskingcommnetlist;
+    JsonArray jsonArray;
+    TypeToken<List<Busking_vo>> typeToken =
+            new TypeToken<List<Busking_vo>>() {};
+    Busking_vo busking_vo;
+    Gson gson2 = new Gson();
 
 
     @Override
@@ -46,8 +70,15 @@ public class busking_category extends AppCompatActivity {
         relativeLayout = findViewById(R.id.busking_relativelayout);
 
         BottomNavigationView menu = findViewById(R.id.bottomNavigationView);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://caramels.kro.kr:9632/")
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        busking_interface = retrofit.create(busking_interface.class);
 
         busrecyclerviewdatasetting();
+
 
         menu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -88,10 +119,35 @@ public class busking_category extends AppCompatActivity {
     }
     public void busrecyclerviewdatasetting(){
         busrecyclerviewlistsetting();
-        for (int i=0; i<5; i++){
-            busRecyclerviewApdapter.addItems(new BuskingItems(R.drawable.busker,"버스킹제목","버스킹내용"));
-        }
-        recyclerView.setAdapter(busRecyclerviewApdapter);
+        Call<JsonArray> call = busking_interface.getbusking();
+        call.enqueue(new Callback<JsonArray>() {
+            @Override
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                Log.d("성공", response.code() + "");
+                if (response.isSuccessful()) {
+
+                    jsonArray = response.body();
+                    buskinglist = new String[jsonArray.size()];
+                    buskingcommnetlist = new String[jsonArray.size()];
+                    List<Busking_vo> list =
+                            gson2.fromJson(jsonArray, typeToken.getType());
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        final int index = i;
+                        buskinglist[index] = list.get(index).getBusking_user_name();
+                        buskingcommnetlist[index] = list.get(index).getBusking_genre();
+                        busRecyclerviewApdapter.addItems(new BuskingItems(R.drawable.busker,buskinglist[i],buskingcommnetlist[i]));
+                    }
+                    recyclerView.setAdapter(busRecyclerviewApdapter);
+                    Log.d("결과값", buskinglist[0]);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonArray> call, Throwable t) {
+                Log.d("결과값", t.getMessage());
+            }
+        });
+
 
         busRecyclerviewApdapter.setClickListenerInterface(new BuskingRecyclerviewClickListenerInterface() {
             @Override
@@ -104,4 +160,5 @@ public class busking_category extends AppCompatActivity {
             }
         });
     }
+
 }

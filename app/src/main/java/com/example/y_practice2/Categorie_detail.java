@@ -76,7 +76,7 @@ public class Categorie_detail extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
-        if (place == "영화관") {
+        if (place.equals("영화관")) {
             Theater_interface service;
             TypeToken<List<Theater_vo>> movieToken = new TypeToken<List<Theater_vo>>() {};
             service = retrofit.create(Theater_interface.class);
@@ -109,11 +109,11 @@ public class Categorie_detail extends AppCompatActivity {
                     Log.d("오류출력", t.getMessage());
                 }
             });
-        } else if (place == "연극장") {
-            Concert_interface service;
+        } else if (place.equals("연극장") ) {
+            Concert_interface service2;
             TypeToken<List<Concert_list>> token = new TypeToken<List<Concert_list>>() {};
-            service = retrofit.create(Concert_interface.class);
-            Call<JsonArray> call = service.getConcertList(id + 1);
+            service2 = retrofit.create(Concert_interface.class);
+            Call<JsonArray> call = service2.getConcertList(id + 1);
             call.enqueue(new Callback<JsonArray>() {
                 @Override
                 public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
@@ -127,11 +127,11 @@ public class Categorie_detail extends AppCompatActivity {
                     concert_hall_name = new String[jsonArray.size()];
                     concert_hall_address = new String[jsonArray.size()];
 
-                    List<Concert_list> theaterList = gson2.fromJson(jsonArray, token.getType());
+                    List<Concert_list> concert_lists = gson2.fromJson(jsonArray, token.getType());
 
 
-                    concert_hall_name[0] = theaterList.get(0).getConcert_hall_name();
-                    concert_hall_address[0] = theaterList.get(0).getConcert_hall_address();
+                    concert_hall_name[0] = concert_lists.get(0).getConcert_hall_name();
+                    concert_hall_address[0] = concert_lists.get(0).getConcert_hall_address();
 
                     Log.i("Test1", String.valueOf(theater_play_name[0]));
 
@@ -139,7 +139,7 @@ public class Categorie_detail extends AppCompatActivity {
                     location.setText("주소 : \n" + concert_hall_address[0]);
                     current_list.setText("공연목록 : \n");
                     for (int i=0; i<jsonArray.size(); i++) {
-                        theater_play_name[i] = theaterList.get(i).getTheater_play_name();
+                        theater_play_name[i] = concert_lists.get(i).getTheater_play_name();
                         current_list.append(theater_play_name[i] + ",\n");
                     }
 

@@ -20,7 +20,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import me.relex.circleindicator.CircleIndicator3;
@@ -32,7 +31,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Categorie_detail extends AppCompatActivity {
 
-    private ArrayList<Movie> movie;
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
     private int num_page = 4;
@@ -42,7 +40,7 @@ public class Categorie_detail extends AppCompatActivity {
     private Button map,sns,homepage;
 
     Gson gson = new GsonBuilder().setLenient().create();
-    movie_interface service;
+
 
     Main_Fragment main_fragment;
     Mypage_Fragment mypage_fragment;
@@ -67,38 +65,44 @@ public class Categorie_detail extends AppCompatActivity {
 
         BottomNavigationView menu = findViewById(R.id.bottomNavigationView);//하단 바
 
-        int movie_id = getIntent().getIntExtra("movieid",0);
+        int id = getIntent().getIntExtra("movieid",0); // 각각 id값 초기화
+        String place = getIntent().getStringExtra("place");
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://caramels.kro.kr:9632/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
-        service = retrofit.create(movie_interface.class);
+        if (place == "영화관") {
+            movie_interface service;
+            service = retrofit.create(movie_interface.class);
+            Call<JsonArray> call = service.getMovieDetail(id + 1);
+            call.enqueue(new Callback<JsonArray>() {
+                @Override
+                public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
 
-        Call<JsonArray> call = service.getMovieDetail(movie_id+1);
-        call.enqueue(new Callback<JsonArray>() {
-            @Override
-            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                    String[] movie_name_kr;
 
-                String[] movie_name_kr;
+                    jsonArray = response.body();
+                    movie_name_kr = new String[jsonArray.size()];
+                    List<Movie> movieList = gson2.fromJson(jsonArray, movieToken.getType());
+                    movie_name_kr[0] = movieList.get(0).getMovie_name_kr();
+                    Log.i("Test1", String.valueOf(movie_name_kr[0]));
 
-                jsonArray = response.body();
-                movie_name_kr = new String[jsonArray.size()];
-                List<Movie> movieList = gson2.fromJson(jsonArray, movieToken.getType());
-                movie_name_kr[0] = movieList.get(0).getMovie_name_kr();
-                Log.i("Test1", String.valueOf(movie_name_kr[0]));
+                    title.setText(movie_name_kr[0]);
 
-                title.setText(movie_name_kr[0]);
+                }
 
-            }
+                @Override
+                public void onFailure(Call<JsonArray> call, Throwable t) {
+                    Log.d("오류출력", t.getMessage());
+                }
+            });
+        } else if (place == "연극장") {
 
-            @Override
-            public void onFailure(Call<JsonArray> call, Throwable t) {
-                Log.i("Test1", String.valueOf(movie_id));
-                Log.d("오류출력", t.getMessage());
-            }
-        });
+        } else if (place == "공연장") {
+
+        }
 
         menu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

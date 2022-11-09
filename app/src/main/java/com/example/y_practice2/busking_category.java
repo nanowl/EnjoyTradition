@@ -155,6 +155,7 @@ public class busking_category extends AppCompatActivity {
                 BuskingItems buskingItems = busRecyclerviewApdapter.getItem(position);
                 Intent intent = new Intent(getApplicationContext(),Categorie_detail.class);
                 intent.putExtra("buskingid",position);
+                intent.putExtra("place","버스킹");
                 Log.d("뭐지",position+"");
                 startActivity(intent);
             }

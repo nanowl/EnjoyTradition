@@ -14,4 +14,6 @@
     <string name="SystemNameValue">SystemName</string>
 
     <string name="CustomerServiceValue">CustomerService</string>
+
+    <string name="Reservation_detail_list">예약 내역</string>
 </resources>

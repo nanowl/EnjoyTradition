@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -41,7 +42,7 @@ public class Categorie_detail extends AppCompatActivity {
     private CircleIndicator3 mIndicator;
 
     private TextView title,location,current_list;
-    private Button map,sns,homepage;
+    private Button map,sns,homepage,reserve;
 
     Gson gson = new GsonBuilder().setLenient().create();
 
@@ -66,6 +67,7 @@ public class Categorie_detail extends AppCompatActivity {
         map = findViewById(R.id.btn_map); // 지도로 보냄
         sns = findViewById(R.id.btn_sns); // sns link로 보냄
         homepage = findViewById(R.id.btn_homepage); // homp 링크로 보냄
+        reserve = findViewById(R.id.btn_reservation);
 
         BottomNavigationView menu = findViewById(R.id.bottomNavigationView);//하단 바
 
@@ -143,6 +145,7 @@ public class Categorie_detail extends AppCompatActivity {
                         title.setText(concert_hall_name[0]);
                         location.setText("주소 : \n" + concert_hall_address[0]);
                         current_list.setText("공연목록 : \n");
+                        reserve.setVisibility(View.VISIBLE);
                         for (int i = 0; i < jsonArray.size(); i++) {
                             theater_play_name[i] = concert_lists.get(i).getTheater_play_name();
                             current_list.append(theater_play_name[i] + ",\n");
@@ -155,7 +158,7 @@ public class Categorie_detail extends AppCompatActivity {
                     Log.d("오류출력", t.getMessage());
                 }
             });
-        } else if (place == "버스킹") {
+        } else if (place.equals("버스킹")) {
             busking_interface service;
             TypeToken<List<Busking>> token = new TypeToken<List<Busking>>() {};
             service = retrofit.create(busking_interface.class);
@@ -177,13 +180,13 @@ public class Categorie_detail extends AppCompatActivity {
                     busking_place_name = new String[jsonArray.size()];
                     busking_user_sns = new String[jsonArray.size()];
 
-                    List<Busking> theaterList = gson2.fromJson(jsonArray, token.getType());
+                    List<Busking> buskingList = gson2.fromJson(jsonArray, token.getType());
 
-                    busking_address[0] = theaterList.get(0).getBusking_place_address();
-                    busking_genre[0] = theaterList.get(0).getBusking_genre();
-                    busking_username[0] = theaterList.get(0).getBusking_user_name();
-                    busking_place_name[0] = theaterList.get(0).getBusking_place_name();
-                    busking_user_sns[0] = theaterList.get(0).getBusking_place_name();
+                    busking_address[0] = buskingList.get(0).getBusking_place_address();
+                    busking_genre[0] = buskingList.get(0).getBusking_genre();
+                    busking_username[0] = buskingList.get(0).getBusking_user_name();
+                    busking_place_name[0] = buskingList.get(0).getBusking_place_name();
+                    busking_user_sns[0] = buskingList.get(0).getBusking_place_name();
 
                     Log.i("Test1", String.valueOf(busking_username[0]));
 

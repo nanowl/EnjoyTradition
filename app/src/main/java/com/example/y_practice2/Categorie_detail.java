@@ -12,8 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.y_practice2.retrofit.movie_interface;
-import com.example.y_practice2.vo.Movie;
+import com.example.y_practice2.retrofit.Concert_interface;
+import com.example.y_practice2.retrofit.Theater_interface;
+import com.example.y_practice2.vo.Concert_list;
+import com.example.y_practice2.vo.Theater_vo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -48,7 +50,7 @@ public class Categorie_detail extends AppCompatActivity {
 
     JsonArray jsonArray;
     Gson gson2 = new Gson();
-    TypeToken<List<Movie>> movieToken = new TypeToken<List<Movie>>() {};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,29 +69,38 @@ public class Categorie_detail extends AppCompatActivity {
 
         int id = getIntent().getIntExtra("movieid",0); // 각각 id값 초기화
         String place = getIntent().getStringExtra("place");
+        Log.i("place", place);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://caramels.kro.kr:9632/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
-        if (place == "영화관") {
-            movie_interface service;
-            service = retrofit.create(movie_interface.class);
-            Call<JsonArray> call = service.getMovieDetail(id + 1);
+        if (place.equals("영화관")) {
+            Theater_interface service;
+            TypeToken<List<Theater_vo>> movieToken = new TypeToken<List<Theater_vo>>() {};
+            service = retrofit.create(Theater_interface.class);
+            Call<JsonArray> call = service.getTheaterDetail(id + 1);
             call.enqueue(new Callback<JsonArray>() {
                 @Override
                 public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
 
-                    String[] movie_name_kr;
+                    String[] theater_name;
+                    String[] theater_address;
 
                     jsonArray = response.body();
-                    movie_name_kr = new String[jsonArray.size()];
-                    List<Movie> movieList = gson2.fromJson(jsonArray, movieToken.getType());
-                    movie_name_kr[0] = movieList.get(0).getMovie_name_kr();
-                    Log.i("Test1", String.valueOf(movie_name_kr[0]));
+                    theater_name = new String[jsonArray.size()];
+                    theater_address = new String[jsonArray.size()];
 
-                    title.setText(movie_name_kr[0]);
+                    List<Theater_vo> theaterList = gson2.fromJson(jsonArray, movieToken.getType());
+
+                    theater_name[0] = theaterList.get(0).getTheater_name();
+                    theater_address[0] = theaterList.get(0).getTheater_road_address();
+
+                    Log.i("Test1", String.valueOf(theater_name[0]));
+
+                    title.setText(theater_name[0]);
+                    location.setText("주소 : \n" + theater_address[0]);
 
                 }
 
@@ -98,8 +109,47 @@ public class Categorie_detail extends AppCompatActivity {
                     Log.d("오류출력", t.getMessage());
                 }
             });
-        } else if (place == "연극장") {
+        } else if (place.equals("연극장") ) {
+            Concert_interface service2;
+            TypeToken<List<Concert_list>> token = new TypeToken<List<Concert_list>>() {};
+            service2 = retrofit.create(Concert_interface.class);
+            Call<JsonArray> call = service2.getConcertList(id + 1);
+            call.enqueue(new Callback<JsonArray>() {
+                @Override
+                public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
 
+                    String[] theater_play_name;
+                    String[] concert_hall_name;
+                    String[] concert_hall_address;
+
+                    jsonArray = response.body();
+                    theater_play_name = new String[jsonArray.size()];
+                    concert_hall_name = new String[jsonArray.size()];
+                    concert_hall_address = new String[jsonArray.size()];
+
+                    List<Concert_list> concert_lists = gson2.fromJson(jsonArray, token.getType());
+
+
+                    concert_hall_name[0] = concert_lists.get(0).getConcert_hall_name();
+                    concert_hall_address[0] = concert_lists.get(0).getConcert_hall_address();
+
+                    Log.i("Test1", String.valueOf(theater_play_name[0]));
+
+                    title.setText(concert_hall_name[0]);
+                    location.setText("주소 : \n" + concert_hall_address[0]);
+                    current_list.setText("공연목록 : \n");
+                    for (int i=0; i<jsonArray.size(); i++) {
+                        theater_play_name[i] = concert_lists.get(i).getTheater_play_name();
+                        current_list.append(theater_play_name[i] + ",\n");
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<JsonArray> call, Throwable t) {
+                    Log.d("오류출력", t.getMessage());
+                }
+            });
         } else if (place == "공연장") {
 
         }

@@ -50,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
             tokencheck = pref.getString("Login", "");
             Log.d("tokencheck2", tokencheck);
         }
-
+        //쉐어드
+        SharedPreferences pref = getSharedPreferences("token", MODE_PRIVATE);    // token 이름의 기본모드 설정
+        tokencheck = pref.getString("Login", "");
 
 
 

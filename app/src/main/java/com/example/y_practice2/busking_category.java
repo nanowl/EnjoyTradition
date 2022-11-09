@@ -154,7 +154,7 @@ public class busking_category extends AppCompatActivity {
             public void onItemClick(BuskingRecyclerviewApdapter.ViewHolder holder, View view, int position) {
                 BuskingItems buskingItems = busRecyclerviewApdapter.getItem(position);
                 Intent intent = new Intent(getApplicationContext(),Categorie_detail.class);
-                intent.putExtra("buskingid",position);
+                intent.putExtra("movieid",position);
                 intent.putExtra("place","버스킹");
                 Log.d("뭐지",position+"");
                 startActivity(intent);

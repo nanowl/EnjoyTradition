@@ -3,7 +3,7 @@ package com.example.y_practice2.vo;
 public class Busking {
 
     int busking_id;
-    int member_id;
+    String member_id;
     String busking_user_name;
     String busking_genre;
     String busking_image;
@@ -13,7 +13,7 @@ public class Busking {
     String busking_start_timestamp;
     String busking_end_timestamp;
 
-    public Busking(int busking_id, int member_id, String busking_user_name, String busking_genre, String busking_image, String busking_place_name, String busking_place_address, String busking_user_sns, String busking_start_timestamp, String busking_end_timestamp) {
+    public Busking(int busking_id, String member_id, String busking_user_name, String busking_genre, String busking_image, String busking_place_name, String busking_place_address, String busking_user_sns, String busking_start_timestamp, String busking_end_timestamp) {
         this.busking_id = busking_id;
         this.member_id = member_id;
         this.busking_user_name = busking_user_name;
@@ -34,11 +34,11 @@ public class Busking {
         this.busking_id = busking_id;
     }
 
-    public int getMember_id() {
+    public String getMember_id() {
         return member_id;
     }
 
-    public void setMember_id(int member_id) {
+    public void setMember_id(String member_id) {
         this.member_id = member_id;
     }
 

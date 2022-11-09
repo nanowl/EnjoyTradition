@@ -155,11 +155,11 @@ public class Categorie_detail extends AppCompatActivity {
                     Log.d("오류출력", t.getMessage());
                 }
             });
-        } else if (place == "버스킹") {
-            busking_interface service;
-            TypeToken<List<Busking>> token = new TypeToken<List<Busking>>() {};
-            service = retrofit.create(busking_interface.class);
-            Call<JsonArray> call = service.getbuskingDetail(id + 1);
+        } else if (place.equals("버스킹")) {
+            busking_interface service3;
+            TypeToken<List<Busking>> token2 = new TypeToken<List<Busking>>() {};
+            service3 = retrofit.create(busking_interface.class);
+            Call<JsonArray> call = service3.getbuskingDetail(id + 1);
             call.enqueue(new Callback<JsonArray>() {
                 @Override
                 public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
@@ -177,13 +177,13 @@ public class Categorie_detail extends AppCompatActivity {
                     busking_place_name = new String[jsonArray.size()];
                     busking_user_sns = new String[jsonArray.size()];
 
-                    List<Busking> theaterList = gson2.fromJson(jsonArray, token.getType());
+                    List<Busking> BuskingList = gson2.fromJson(jsonArray, token2.getType());
 
-                    busking_address[0] = theaterList.get(0).getBusking_place_address();
-                    busking_genre[0] = theaterList.get(0).getBusking_genre();
-                    busking_username[0] = theaterList.get(0).getBusking_user_name();
-                    busking_place_name[0] = theaterList.get(0).getBusking_place_name();
-                    busking_user_sns[0] = theaterList.get(0).getBusking_place_name();
+                    busking_address[0] = BuskingList.get(0).getBusking_place_address();
+                    busking_genre[0] = BuskingList.get(0).getBusking_genre();
+                    busking_username[0] = BuskingList.get(0).getBusking_user_name();
+                    busking_place_name[0] = BuskingList.get(0).getBusking_place_name();
+                    busking_user_sns[0] = BuskingList.get(0).getBusking_place_name();
 
                     Log.i("Test1", String.valueOf(busking_username[0]));
 

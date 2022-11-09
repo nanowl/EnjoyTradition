@@ -20,11 +20,14 @@ import androidx.appcompat.app.AppCompatActivity;
 //import com.google.android.exoplayer2.util.Log;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class Reservation_Page extends AppCompatActivity{
     String logincheck = "";
     String select_text;
-    String[] items = null;
+    String[] items = {"15:00","16:00","18:00","19:30"};
 
     ScrollView scrollView;
 
@@ -37,7 +40,6 @@ public class Reservation_Page extends AppCompatActivity{
         logincheck = pref.getString("Login", "");
         scrollView = findViewById(R.id.Reservation_Page_ScrollView);
         Spinner spinner = (Spinner) findViewById(R.id.spinner_select_reservation_page);
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);

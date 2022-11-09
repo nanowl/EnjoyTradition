@@ -3,6 +3,27 @@ package com.example.y_practice2.vo;
 public class Theater_vo {
     int theater_id;
     String theater_municipal_government;
+    String theater_name;
+    String theater_manage_number;
+    String theater_license_number;
+    String theater_phone_number;
+    int theater_postal_code;
+    String theater_all_address;
+    String theater_road_address;
+    int theater_road_postal_code;
+
+    public Theater_vo(int theater_id, String theater_municipal_government, String theater_name, String theater_manage_number, String theater_license_number, String theater_phone_number, int theater_postal_code, String theater_all_address, String theater_road_address, int theater_road_postal_code) {
+        this.theater_id = theater_id;
+        this.theater_municipal_government = theater_municipal_government;
+        this.theater_name = theater_name;
+        this.theater_manage_number = theater_manage_number;
+        this.theater_license_number = theater_license_number;
+        this.theater_phone_number = theater_phone_number;
+        this.theater_postal_code = theater_postal_code;
+        this.theater_all_address = theater_all_address;
+        this.theater_road_address = theater_road_address;
+        this.theater_road_postal_code = theater_road_postal_code;
+    }
 
     public int getTheater_id() {
         return theater_id;
@@ -84,27 +105,7 @@ public class Theater_vo {
         this.theater_road_postal_code = theater_road_postal_code;
     }
 
-    String theater_name;
-    String theater_manage_number;
-    String theater_license_number;
-    String theater_phone_number;
-    int theater_postal_code;
-    String theater_all_address;
-    String theater_road_address;
-    int theater_road_postal_code;
 
-    public Theater_vo(int theater_id, String theater_municipal_government, String theater_name, String theater_manage_number, String theater_license_number, String theater_phone_number, int theater_postal_code, String theater_all_address, String theater_road_address, int theater_road_postal_code) {
-        this.theater_id = theater_id;
-        this.theater_municipal_government = theater_municipal_government;
-        this.theater_name = theater_name;
-        this.theater_manage_number = theater_manage_number;
-        this.theater_license_number = theater_license_number;
-        this.theater_phone_number = theater_phone_number;
-        this.theater_postal_code = theater_postal_code;
-        this.theater_all_address = theater_all_address;
-        this.theater_road_address = theater_road_address;
-        this.theater_road_postal_code = theater_road_postal_code;
-    }
 
     public  Theater_vo(){super();}
     }

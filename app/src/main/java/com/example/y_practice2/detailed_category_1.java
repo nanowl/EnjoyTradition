@@ -1,10 +1,5 @@
 package com.example.y_practice2;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,8 +9,13 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.example.y_practice2.retrofit.Theater_interface;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.y_practice2.retrofit.Concert_interface;
+import com.example.y_practice2.retrofit.Theater_interface;
 import com.example.y_practice2.vo.ConcertHall;
 import com.example.y_practice2.vo.MovieItems;
 import com.example.y_practice2.vo.Theater_vo;
@@ -165,6 +165,7 @@ public class detailed_category_1 extends AppCompatActivity {
                 intent.putExtra("movieid",position);
                 intent.putExtra("place",textchange);
                 Log.d("movieid",""+position);
+                Log.d("place",""+textchange);
                 startActivity(intent);
             }
         });

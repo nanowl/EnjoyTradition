@@ -14,6 +14,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.y_practice2.retrofit.Concert_interface;
 import com.example.y_practice2.retrofit.Theater_interface;
+import com.example.y_practice2.retrofit.busking_interface;
+import com.example.y_practice2.vo.Busking;
 import com.example.y_practice2.vo.Concert_list;
 import com.example.y_practice2.vo.Theater_vo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -135,13 +137,61 @@ public class Categorie_detail extends AppCompatActivity {
 
                     Log.i("Test1", String.valueOf(theater_play_name[0]));
 
-                    title.setText(concert_hall_name[0]);
-                    location.setText("주소 : \n" + concert_hall_address[0]);
-                    current_list.setText("공연목록 : \n");
-                    for (int i=0; i<jsonArray.size(); i++) {
-                        theater_play_name[i] = concert_lists.get(i).getTheater_play_name();
-                        current_list.append(theater_play_name[i] + ",\n");
+
+
+                    if (jsonArray.size() > 1) {
+                        title.setText(concert_hall_name[0]);
+                        location.setText("주소 : \n" + concert_hall_address[0]);
+                        current_list.setText("공연목록 : \n");
+                        for (int i = 0; i < jsonArray.size(); i++) {
+                            theater_play_name[i] = concert_lists.get(i).getTheater_play_name();
+                            current_list.append(theater_play_name[i] + ",\n");
+                        }
                     }
+                }
+
+                @Override
+                public void onFailure(Call<JsonArray> call, Throwable t) {
+                    Log.d("오류출력", t.getMessage());
+                }
+            });
+        } else if (place == "버스킹") {
+            busking_interface service;
+            TypeToken<List<Busking>> token = new TypeToken<List<Busking>>() {};
+            service = retrofit.create(busking_interface.class);
+            Call<JsonArray> call = service.getbuskingDetail(id + 1);
+            call.enqueue(new Callback<JsonArray>() {
+                @Override
+                public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+
+                    String[] busking_genre;
+                    String[] busking_address;
+                    String[] busking_username;
+                    String[] busking_place_name;
+                    String[] busking_user_sns;
+
+                    jsonArray = response.body();
+                    busking_genre = new String[jsonArray.size()];
+                    busking_address = new String[jsonArray.size()];
+                    busking_username = new String[jsonArray.size()];
+                    busking_place_name = new String[jsonArray.size()];
+                    busking_user_sns = new String[jsonArray.size()];
+
+                    List<Busking> theaterList = gson2.fromJson(jsonArray, token.getType());
+
+                    busking_address[0] = theaterList.get(0).getBusking_place_address();
+                    busking_genre[0] = theaterList.get(0).getBusking_genre();
+                    busking_username[0] = theaterList.get(0).getBusking_user_name();
+                    busking_place_name[0] = theaterList.get(0).getBusking_place_name();
+                    busking_user_sns[0] = theaterList.get(0).getBusking_place_name();
+
+                    Log.i("Test1", String.valueOf(busking_username[0]));
+
+                    title.setText(busking_username[0]);
+                    location.setText("주소 : \n" + busking_address[0]);
+                    current_list.setText("공연자 : " + busking_username[0] + "\n");
+                    current_list.append("장르 : " + busking_genre[0] + "\n");
+                    current_list.append("instagram : " + busking_user_sns[0] + "\n");
 
                 }
 
@@ -150,8 +200,6 @@ public class Categorie_detail extends AppCompatActivity {
                     Log.d("오류출력", t.getMessage());
                 }
             });
-        } else if (place == "공연장") {
-
         }
 
         menu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
